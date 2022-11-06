@@ -2,15 +2,13 @@ import { useCallback } from 'react';
 
 // Default V2 theme
 import 'survey-core/defaultV2.min.css';
-// Modern theme
-// import 'survey-core/modern.min.css';
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { surveyJson } from './json.js';
 
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react'
 
-function visitor() {
+const Visitor = props => {
   const {
     isLoading,
     error,
@@ -32,7 +30,7 @@ function visitor() {
       </div>
     );
   } else {
-    return null;
+    return <div></div>;
   }
 }
 
@@ -54,7 +52,7 @@ function App() {
   survey.onComplete.add(alertResults);
 
   return (<div>
-    <p>{visitor()}</p>
+    <Visitor/>
     <Survey model={survey} />
   </div>);
 }
