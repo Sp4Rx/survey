@@ -8,6 +8,34 @@ import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { surveyJson } from './json.js';
 
+import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react'
+
+function visitor() {
+  const {
+    isLoading,
+    error,
+    data,
+  } = useVisitorData();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>An error occurred: {error.message}</div>;
+  }
+
+  if (data) {
+    // perform some logic based on the visitor data
+    return (
+      <div>
+        Welcome {data.visitorFound ? 'back ' : ''}{data.visitorId}
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
+
 // const SURVEY_ID = 1;
 
 StylesManager.applyTheme("defaultV2");
@@ -25,7 +53,10 @@ function App() {
 
   survey.onComplete.add(alertResults);
 
-  return <Survey model={survey} />;
+  return (<div>
+    <p>{visitor()}</p>
+    <Survey model={survey} />
+  </div>);
 }
 
 // function saveSurveyResults(url, json) {
