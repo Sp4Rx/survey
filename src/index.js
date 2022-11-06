@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { FpjsProvider } from '@fingerprintjs/fingerprintjs-pro-react';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <FpjsProvider
+    loadOptions={{
+      apiKey: "u2KeZPAdoM4CmuWQdgQj",
+      scriptUrlPattern: "https://suvajit.in/MocrOwIiRABIA9px/03ePBVe550jV0l4C?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+      region: "ap",
+      endpoint: "https://suvajit.in/MocrOwIiRABIA9px/MQCCyJJNYHxaadBY?region=ap"
+    }}
+  >
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  </FpjsProvider>,
   document.getElementById('root')
 );
 
